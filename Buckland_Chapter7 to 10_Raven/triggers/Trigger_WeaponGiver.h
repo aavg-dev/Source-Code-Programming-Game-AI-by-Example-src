@@ -11,7 +11,8 @@
 //            specified type 
 //
 //-----------------------------------------------------------------------------
-#include "Triggers/Trigger_Respawning.h"
+//#include "Triggers/Trigger_Respawning.h"
+#include "..\Common\Triggers\Trigger_Respawning.h"
 #include "../Raven_Bot.h"
 #include <iosfwd>
 

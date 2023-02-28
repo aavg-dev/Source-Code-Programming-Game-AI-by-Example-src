@@ -11,8 +11,10 @@
 //            increased. 
 //
 //-----------------------------------------------------------------------------
-#include "Triggers/Trigger_Respawning.h"
-#include "Triggers/TriggerRegion.h"
+//#include "Triggers/Trigger_Respawning.h"
+//#include "Triggers/TriggerRegion.h"
+#include "..\Common\Triggers\TriggerRegion.h"
+#include "..\Common\Triggers\Trigger_Respawning.h"
 #include <iosfwd>
 #include "../Raven_Bot.h"
 

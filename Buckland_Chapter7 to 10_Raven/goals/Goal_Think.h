@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------
 #include <vector>
 #include <string>
-#include "2d/Vector2D.h"
+#include "../Common/2D/Vector2D.h"
 #include "Goals/Goal_Composite.h"
 #include "../Raven_Bot.h"
 #include "Goal_Evaluator.h"

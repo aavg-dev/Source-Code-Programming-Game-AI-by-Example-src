@@ -1,0 +1,51 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static Libraries
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Visual Studio files
+.vs/
+*.suo
+*.sdf
+*.opensdf
+*.vc.db
+*.vcproj.user
+*.vcxproj.user
+*.psess
+*.pdb
+*.obj
+*.ipdb
+*.iobj
+*.pch
+*.res
+*.tlb
+*.tlh
+*.bak
+*.*.log
+*.log
+*.tlog
+*.lastbuildstate
+*.lastbuildstate.bin
+x64/
+Debug/
+Release/
+
+# Compiled output
+bin/
+obj/
