@@ -201,6 +201,11 @@ public:
         {
           ++curEdge;
     
+          /* avega */
+          if (end()) {
+              return &(*(std::prev(curEdge)));
+          }
+          /* avega */
           return &(*curEdge);
 
         }
@@ -247,8 +252,13 @@ public:
 
         const EdgeType*  next()
         {
+          
           ++curEdge;
-    
+          /* avega */
+          if (end()) {
+              return &(*(std::prev(curEdge)));
+          }
+          /* avega */
           return &(*curEdge);
 
         }
@@ -256,6 +266,7 @@ public:
         //return true if we are at the end of the edge list
         bool end()
         {
+          //EdgeList::const_iterator next_edge = curEdge + ;
           return (curEdge == G.m_Edges[NodeIndex].end());
         }
       };
@@ -310,6 +321,11 @@ public:
 
         GetNextValidNode(curNode);
 
+        /* avega */
+        if (end()) {
+            return &(*(std::prev(curNode)));
+        }
+        /* avega */
         return &(*curNode);
       }
 
@@ -369,6 +385,13 @@ public:
         ++curNode;
 
         GetNextValidNode(curNode);
+
+        /* avega */
+        if (end()) {
+            return &(*(std::prev(curNode)));
+        }
+        /* avega */
+
 
         return &(*curNode);
       }
