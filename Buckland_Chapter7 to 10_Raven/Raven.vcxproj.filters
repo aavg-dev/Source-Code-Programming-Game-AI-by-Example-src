@@ -184,9 +184,6 @@
     <ClCompile Include="goals\Goal_DodgeSideToSide.cpp">
       <Filter>AI\goals\atomic</Filter>
     </ClCompile>
-    <ClCompile Include="goals\Goal_SayPhrase.cpp">
-      <Filter>AI\goals\atomic</Filter>
-    </ClCompile>
     <ClCompile Include="goals\Goal_SeekToPosition.cpp">
       <Filter>AI\goals\atomic</Filter>
     </ClCompile>
@@ -411,9 +408,6 @@
     <ClInclude Include="goals\Goal_DodgeSideToSide.h">
       <Filter>AI\goals\atomic</Filter>
     </ClInclude>
-    <ClInclude Include="goals\Goal_SayPhrase.h">
-      <Filter>AI\goals\atomic</Filter>
-    </ClInclude>
     <ClInclude Include="goals\Goal_SeekToPosition.h">
       <Filter>AI\goals\atomic</Filter>
     </ClInclude>
@@ -624,8 +618,8 @@
     <CustomBuild Include="maps\Raven_DM1.map">
       <Filter>Resource Files\maps</Filter>
     </CustomBuild>
-    <CustomBuild Include="maps\Raven_DM1_Doors.map">
-      <Filter>Resource Files\maps</Filter>
-    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="maps\Raven_DM1_With_Doors.map" />
   </ItemGroup>
 </Project>

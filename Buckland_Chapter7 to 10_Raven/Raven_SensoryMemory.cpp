@@ -135,6 +135,32 @@ void Raven_SensoryMemory::UpdateVision()
 }
 
 
+//----------------------------- UpdateHitsReceived ----------------------------------
+//this method updates the registry of hits the bot has received from 
+//the rest of the bots with info of the damage taken
+//-----------------------------------------------------------------------------
+void Raven_SensoryMemory::UpdateHitsReceived(Raven_Bot* pBot, int damageReceived)
+{
+    //make sure the bot being examined is not this bot
+    if (m_pOwner != pBot)
+    {
+        //if the bot is already part of the memory then update its data, else
+        //create a new memory record and add it to the memory
+        MakeNewRecordIfNotAlreadyPresent(pBot);
+
+        MemoryRecord& info = m_MemoryMap[pBot];
+
+        //record the time and damage it was sensed
+        int previousDamage = std::get<1>(info.fLastHitTimeAndTotalDamage);
+       //TODO: Take previous value and sum it
+        info.fLastHitTimeAndTotalDamage = { (double)Clock->GetCurrentTime(), previousDamage + damageReceived };
+
+        //We could update the time the bot was sensed as we received a hit, 
+        // but there is another method for that
+    }
+
+}
+
 //------------------------ GetListOfRecentlySensedOpponents -------------------
 //
 //  returns a list of the bots that have been sensed recently

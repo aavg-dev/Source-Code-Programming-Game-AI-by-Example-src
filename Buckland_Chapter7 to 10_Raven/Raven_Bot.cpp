@@ -19,8 +19,10 @@
 #include "goals/Raven_Goal_Types.h"
 #include "goals/Goal_Think.h"
 
-
 #include "Debug/DebugConsole.h"
+
+#include "../Common/Game/EntityManager.h"
+
 
 //-------------------------- ctor ---------------------------------------------
 Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos):
@@ -224,25 +226,29 @@ bool Raven_Bot::HandleMessage(const Telegram& msg)
   switch(msg.Msg)
   {
   case Msg_TakeThatMF:
+  {
+      //just return if already dead or spawning
+      if (isDead() || isSpawning()) return true;
 
-    //just return if already dead or spawning
-    if (isDead() || isSpawning()) return true;
+      //the extra info field of the telegram carries the amount of damage
+      ReduceHealth(DereferenceToType<int>(msg.ExtraInfo));
 
-    //the extra info field of the telegram carries the amount of damage
-    ReduceHealth(DereferenceToType<int>(msg.ExtraInfo));
+      BaseGameEntity* damage_msg_sender = EntityMgr->GetEntityFromID(msg.Sender);
 
-    //if this bot is now dead let the shooter know
-    if (isDead())
-    {
-      Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
-                              ID(),
-                              msg.Sender,
-                              Msg_YouGotMeYouSOB,
-                              NO_ADDITIONAL_INFO);
-    }
+      this->GetSensoryMem()->UpdateHitsReceived((Raven_Bot*)damage_msg_sender, DereferenceToType<int>(msg.ExtraInfo));
 
-    return true;
+      //if this bot is now dead let the shooter know
+      if (isDead())
+      {
+          Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
+              ID(),
+              msg.Sender,
+              Msg_YouGotMeYouSOB,
+              NO_ADDITIONAL_INFO);
+      }
 
+      return true;
+  }
   case Msg_YouGotMeYouSOB:
     
     IncrementScore();

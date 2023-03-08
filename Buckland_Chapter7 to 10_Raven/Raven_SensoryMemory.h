@@ -36,6 +36,11 @@ public:
   //it can also be useful to know the last time an opponent was seen
   double       fTimeLastVisible;
 
+
+  //store the last time we got hit by a specific bot and how
+  //much damage that bot made to us 
+  std::pair<double,int> fLastHitTimeAndTotalDamage;
+
   //a vector marking the position where the opponent was last sensed. This can
   // be used to help hunt down an opponent if it goes out of view
   Vector2D    vLastSensedPosition;
@@ -98,6 +103,10 @@ public:
   //this method iterates through all the opponents in the game world and 
   //updates the records of those that are in the owner's FOV
   void     UpdateVision();
+
+  //this method updates the registry of hits the bot has received from 
+  //the rest of the bots with info of the damage taken
+  void     UpdateHitsReceived(Raven_Bot* pBot, int damageReceived);
 
   bool     isOpponentShootable(Raven_Bot* pOpponent)const;
   bool     isOpponentWithinFOV(Raven_Bot* pOpponent)const;

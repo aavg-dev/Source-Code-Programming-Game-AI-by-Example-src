@@ -30,6 +30,8 @@ void Raven_TargetingSystem::Update()
     //make sure the bot is alive and that it is not the owner
     if ((*curBot)->isAlive() && (*curBot != m_pOwner) )
     {
+
+     ///TODO: Assign current target depending on different criteria
       double dist = Vec2DDistanceSq((*curBot)->Pos(), m_pOwner->Pos());
 
       if (dist < ClosestDistSoFar)

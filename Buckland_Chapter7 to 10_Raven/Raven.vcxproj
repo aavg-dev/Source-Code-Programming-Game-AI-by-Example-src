@@ -401,11 +401,6 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='boundschecker|Win32'"> /Zm200   /Zm200 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /Zm200   /Zm200 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="goals\Goal_SayPhrase.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /Zm200   /Zm200 </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='boundschecker|Win32'"> /Zm200   /Zm200 </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /Zm200   /Zm200 </AdditionalOptions>
-    </ClCompile>
     <ClCompile Include="goals\Goal_SeekToPosition.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /Zm200   /Zm200 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='boundschecker|Win32'"> /Zm200   /Zm200 </AdditionalOptions>
@@ -600,7 +595,6 @@
     <ClInclude Include="goals\Goal_HuntTarget.h" />
     <ClInclude Include="goals\Goal_MoveToPosition.h" />
     <ClInclude Include="goals\Goal_NegotiateDoor.h" />
-    <ClInclude Include="goals\Goal_SayPhrase.h" />
     <ClInclude Include="goals\Goal_SeekToPosition.h" />
     <ClInclude Include="goals\Goal_Think.h" />
     <ClInclude Include="goals\Goal_TraverseEdge.h" />
