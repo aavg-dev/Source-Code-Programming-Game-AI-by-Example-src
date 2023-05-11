@@ -246,11 +246,16 @@ bool Raven_Game::AttemptToAddBot(Raven_Bot* pBot)
 //-----------------------------------------------------------------------------
 void Raven_Game::AddBots(unsigned int NumBotsToAdd)
 { 
+
+
   while (NumBotsToAdd--)
   {
+    //https://cplusplus.com/reference/cstdlib/rand/
+    int randomBotSelectionCriteria = rand() % ((int)TargetSelectionCriteria::most_damaged_received) + 1; // randomBotSelectionCriteria in the range 1 to most_damaged_received (3)
     //create a bot. (its position is irrelevant at this point because it will
     //not be rendered until it is spawned)
-    Raven_Bot* rb = new Raven_Bot(this, Vector2D());
+
+    Raven_Bot* rb = new Raven_Bot(this, Vector2D(), (TargetSelectionCriteria) randomBotSelectionCriteria);
 
     //switch the default steering behaviors on
     rb->GetSteering()->WallAvoidanceOn();

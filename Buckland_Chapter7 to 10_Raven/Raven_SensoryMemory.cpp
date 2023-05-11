@@ -139,6 +139,7 @@ void Raven_SensoryMemory::UpdateVision()
 //this method updates the registry of hits the bot has received from 
 //the rest of the bots with info of the damage taken
 //-----------------------------------------------------------------------------
+
 void Raven_SensoryMemory::UpdateHitsReceived(Raven_Bot* pBot, int damageReceived)
 {
     //make sure the bot being examined is not this bot
@@ -151,12 +152,13 @@ void Raven_SensoryMemory::UpdateHitsReceived(Raven_Bot* pBot, int damageReceived
         MemoryRecord& info = m_MemoryMap[pBot];
 
         //record the time and damage it was sensed
-        int previousDamage = std::get<1>(info.fLastHitTimeAndTotalDamage);
-       //TODO: Take previous value and sum it
-        info.fLastHitTimeAndTotalDamage = { (double)Clock->GetCurrentTime(), previousDamage + damageReceived };
+        int previousDamage = std::get<1>(info.fLastHitTimeAndTotalDamagePerBot);
+        info.fLastHitTimeAndTotalDamagePerBot = { (double)Clock->GetCurrentTime(), previousDamage + damageReceived };
 
         //We could update the time the bot was sensed as we received a hit, 
         // but there is another method for that
+        std::cout << "Bot " << pBot->ID() << "hit bot m_pOwner " << m_pOwner->ID() << " with a hit of " << damageReceived << " .";
+        std::cout << " Bot total damage received is " << std::get<1>(info.fLastHitTimeAndTotalDamagePerBot) << std::endl;
     }
 
 }
@@ -304,4 +306,21 @@ void  Raven_SensoryMemory::RenderBoxesAroundRecentlySensed()const
     gdi->Line(p.x-b, p.y+b, p.x-b, p.y-b);
   }
 
+}
+
+//------------------------ GetTotalDamageReceived ----------------------
+//
+//  returns the amount of damage a given bot has made to us
+//-----------------------------------------------------------------------------
+double  Raven_SensoryMemory::GetTotalDamageReceived(Raven_Bot* pOpponent) const
+{
+    double totalDamage = 0;
+
+    //TODO: Consider time frame when the damage was caused 
+    MemoryMap::const_iterator it = m_MemoryMap.find(pOpponent);
+    if (it != m_MemoryMap.end())
+    {
+        totalDamage = std::get<1>(it->second.fLastHitTimeAndTotalDamagePerBot);
+    }
+    return totalDamage;
 }

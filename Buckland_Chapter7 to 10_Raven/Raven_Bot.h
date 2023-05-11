@@ -29,9 +29,6 @@ class Goal_Think;
 class Raven_WeaponSystem;
 class Raven_SensoryMemory;
 
-
-
-
 class Raven_Bot : public MovingEntity
 {
 private:
@@ -125,7 +122,7 @@ private:
 
 public:
   
-  Raven_Bot(Raven_Game* world, Vector2D pos);
+  Raven_Bot(Raven_Game* world, Vector2D pos, TargetSelectionCriteria criteria);
   virtual ~Raven_Bot();
 
   //the usual suspects

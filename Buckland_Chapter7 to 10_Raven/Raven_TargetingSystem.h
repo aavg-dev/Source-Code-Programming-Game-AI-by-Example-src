@@ -16,6 +16,15 @@
 
 class Raven_Bot;
 
+enum TargetSelectionCriteria
+{
+	default = 0,
+	closer_distance = 1,
+	most_damaged_enemy = 2,
+	most_damaged_received = 3,
+	invalid = 4,
+
+};
 
 
 
@@ -29,10 +38,12 @@ private:
   //the current target (this will be null if there is no target assigned)
   Raven_Bot*  m_pCurrentTarget;
 
+  //the current criteria to select the target
+  TargetSelectionCriteria m_currentCriteria;
 
 public:
 
-  Raven_TargetingSystem(Raven_Bot* owner);
+  Raven_TargetingSystem(Raven_Bot* owner, TargetSelectionCriteria criteria  = TargetSelectionCriteria::default);
 
   //each time this method is called the opponents in the owner's sensory 
   //memory are examined and the closest  is assigned to m_pCurrentTarget.
@@ -61,6 +72,13 @@ public:
   //returns the amount of time the target has been out of view
   double      GetTimeTargetHasBeenOutOfView()const;
   
+  double Raven_TargetingSystem::GetTotalDamageReceived(Raven_Bot* pOpponent)const;
+
+
+  //returns total damage received by a current target
+  double Raven_TargetingSystem::GetTotalDamageReceived()const;
+
+
   //returns a pointer to the target. null if no target current.
   Raven_Bot* GetTarget()const{return m_pCurrentTarget;}
 

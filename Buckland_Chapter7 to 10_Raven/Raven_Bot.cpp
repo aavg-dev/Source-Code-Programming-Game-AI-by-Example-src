@@ -25,7 +25,7 @@
 
 
 //-------------------------- ctor ---------------------------------------------
-Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos):
+Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos, TargetSelectionCriteria criteria):
 
   MovingEntity(pos,
                script->GetDouble("Bot_Scale"),
@@ -75,7 +75,7 @@ Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos):
   m_pBrain = new Goal_Think(this);
 
   //create the targeting system
-  m_pTargSys = new Raven_TargetingSystem(this);
+  m_pTargSys = new Raven_TargetingSystem(this, criteria);
 
   m_pWeaponSys = new Raven_WeaponSystem(this,
                                         script->GetDouble("Bot_ReactionTime"),

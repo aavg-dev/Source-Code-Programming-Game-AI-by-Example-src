@@ -17,6 +17,9 @@
 class Raven_Bot;
 
 
+//Stores information about each of the opponents present in the field
+//The owner of this class will have a MemoryRecord instance for each 
+// of the existing opponents in Raven_SensoryMemory
 class MemoryRecord
 {
 public:
@@ -39,7 +42,9 @@ public:
 
   //store the last time we got hit by a specific bot and how
   //much damage that bot made to us 
-  std::pair<double,int> fLastHitTimeAndTotalDamage;
+  //int --> total damage  
+  //double --> last hit time
+  std::pair<int, double> fLastHitTimeAndTotalDamagePerBot;
 
   //a vector marking the position where the opponent was last sensed. This can
   // be used to help hunt down an opponent if it goes out of view
@@ -106,7 +111,9 @@ public:
 
   //this method updates the registry of hits the bot has received from 
   //the rest of the bots with info of the damage taken
-  void     UpdateHitsReceived(Raven_Bot* pBot, int damageReceived);
+  //void     UpdateHitsReceived(Raven_Bot* pBot, int damageReceived);
+  void     UpdateHitsReceived(Raven_Bot* pDamageDealeR, int damageReceived);
+
 
   bool     isOpponentShootable(Raven_Bot* pOpponent)const;
   bool     isOpponentWithinFOV(Raven_Bot* pOpponent)const;
@@ -114,6 +121,8 @@ public:
   double    GetTimeOpponentHasBeenVisible(Raven_Bot* pOpponent)const;
   double    GetTimeSinceLastSensed(Raven_Bot* pOpponent)const;
   double    GetTimeOpponentHasBeenOutOfView(Raven_Bot* pOpponent)const;
+  double  GetTotalDamageReceived(Raven_Bot* pOpponent) const;
+
 
   //this method returns a list of all the opponents that have had their
   //records updated within the last m_dMemorySpan seconds.
